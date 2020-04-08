@@ -9,13 +9,16 @@ const covid19ImpactEstimator = (data) => {
     let infectionsByRequestedTime = 0;
 
     if (periodType === 'days') {
-      return (infectionsByRequestedTime = currentlyInfected * dayFactor);
+      infectionsByRequestedTime = currentlyInfected * dayFactor;
+      return infectionsByRequestedTime;
     }
     if (periodType === 'weeks') {
-      return (infectionsByRequestedTime = currentlyInfected * weekFactor);
+      infectionsByRequestedTime = currentlyInfected * weekFactor;
+      return infectionsByRequestedTime;
     }
     if (periodType === 'months') {
-      return (infectionsByRequestedTime = currentlyInfected * monthFactor);
+      infectionsByRequestedTime = currentlyInfected * monthFactor;
+      return infectionsByRequestedTime;
     }
 
     return {
@@ -29,13 +32,17 @@ const covid19ImpactEstimator = (data) => {
     let infectionsByRequestedTime = 0;
 
     if (periodType === 'days') {
-      return (infectionsByRequestedTime = currentlyInfected * dayFactor);
+      infectionsByRequestedTime = currentlyInfected * dayFactor;
+      return infectionsByRequestedTime;
     }
     if (periodType === 'weeks') {
-      return (infectionsByRequestedTime = currentlyInfected * weekFactor);
+      infectionsByRequestedTime = currentlyInfected * weekFactor;
+
+      return infectionsByRequestedTime;
     }
     if (periodType === 'months') {
-      return (infectionsByRequestedTime = currentlyInfected * monthFactor);
+      infectionsByRequestedTime = currentlyInfected * monthFactor;
+      return infectionsByRequestedTime;
     }
 
     return {
