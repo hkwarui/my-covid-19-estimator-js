@@ -1,60 +1,31 @@
 const covid19ImpactEstimator = (data) => {
   const { reportedCases, timeToElapse, periodType } = data;
-  const dayFactor = Math.floor(timeToElapse / 3);
-  const weekFactor = Math.floor((timeToElapse * 7) / 3);
-  const monthFactor = Math.floor((timeToElapse * 30) / 3);
+  let factor = 0;
+
+  if (periodType === 'days') {
+    factor = Math.floor(timeToElapse / 3);
+  }
+  if (periodType === 'weeks') {
+    factor = Math.floor((timeToElapse * 7) / 3);
+  }
+  if (periodType === 'months') {
+    factor = Math.floor((timeToElapse * 30) / 3);
+  }
 
   const impact = () => {
     const currentlyInfected = reportedCases * 10;
-    let infectionsByRequestedTime = 0;
-
-    if (periodType === 'days') {
-      infectionsByRequestedTime = currentlyInfected * dayFactor;
-      return infectionsByRequestedTime;
-    }
-    if (periodType === 'weeks') {
-      infectionsByRequestedTime = currentlyInfected * weekFactor;
-      return infectionsByRequestedTime;
-    }
-    if (periodType === 'months') {
-      infectionsByRequestedTime = currentlyInfected * monthFactor;
-      return infectionsByRequestedTime;
-    }
-
-    return {
-      currentlyInfected,
-      infectionsByRequestedTime
-    };
+    const infectionsByRequestedTime = currentlyInfected * 2 ** factor;
   };
 
   const severeImpact = () => {
     const currentlyInfected = reportedCases * 50;
-    let infectionsByRequestedTime = 0;
-
-    if (periodType === 'days') {
-      infectionsByRequestedTime = currentlyInfected * dayFactor;
-      return infectionsByRequestedTime;
-    }
-    if (periodType === 'weeks') {
-      infectionsByRequestedTime = currentlyInfected * weekFactor;
-
-      return infectionsByRequestedTime;
-    }
-    if (periodType === 'months') {
-      infectionsByRequestedTime = currentlyInfected * monthFactor;
-      return infectionsByRequestedTime;
-    }
-
-    return {
-      currentlyInfected,
-      infectionsByRequestedTime
-    };
+    const infectionsByRequestedTime = currentlyInfected * 2 ** factor;
   };
 
   return {
     data,
-    impact,
-    severeImpact
+    impact: { currentlyInfected, infectionsByRequestedTime },
+    severeImpact: { currentlyInfected, infectionsByRequestedTime }
   };
 };
 
