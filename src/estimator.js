@@ -1,5 +1,6 @@
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases } = data;
+  const { reportedCases, timeToElapse } = data;
+  const factor = Math.floor(timeToElapse / 3);
 
   const impact = () => {
     const currentlyInfected = reportedCases * 10;
@@ -13,7 +14,7 @@ const covid19ImpactEstimator = (data) => {
 
   const severeImpact = () => {
     const currentlyInfected = reportedCases * 50;
-    const infectionsByRequestedTime = currentlyInfected * 1024;
+    const infectionsByRequestedTime = currentlyInfected * factor;
 
     return {
       currentlyInfected,
