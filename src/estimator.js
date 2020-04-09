@@ -17,26 +17,25 @@ const covid19ImpactEstimator = (data) => {
   const factor = 2 ** Math.trunc(days / 3);
 
   impact.currentlyInfected = reportedCases * 10;
-  impact.infectionsByRequestedTime = Math.trunc(impact.currentlyInfected * factor);
-  impact.severeCasesByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.15);
+  impact.infectionsByRequestedTime = (impact.currentlyInfected * factor);
+  impact.severeCasesByRequestedTime = (impact.infectionsByRequestedTime * 0.15);
   impact.hospitalBedsByRequestedTime = Math.trunc(beds - impact.severeCasesByRequestedTime);
 
 
-  impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
-  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.02);
+  impact.casesForICUByRequestedTime = (impact.infectionsByRequestedTime * 0.05);
+  impact.casesForVentilatorsByRequestedTime = (impact.infectionsByRequestedTime * 0.02);
   const infections = impact.infectionsByRequestedTime;
   impact.dollarsInFlight = (infections * population * income * days).toFixed(2);
 
   severeImpact.currentlyInfected = reportedCases * 50;
-  severeImpact.infectionsByRequestedTime = Math.trunc(severeImpact.currentlyInfected * factor);
+  severeImpact.infectionsByRequestedTime = (severeImpact.currentlyInfected * factor);
   const severeInfection = severeImpact.infectionsByRequestedTime;
-  severeImpact.severeCasesByRequestedTime = Math.trunc(severeInfection * 0.15);
+  severeImpact.severeCasesByRequestedTime = (severeInfection * 0.15);
   const severeCases = severeImpact.severeCasesByRequestedTime;
   severeImpact.hospitalBedsByRequestedTime = Math.trunc(beds - severeCases);
-  severeImpact.casesForICUByRequestedTime = Math.trunc(severeInfection * 0.05);
-  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeInfection * 0.02);
+  severeImpact.casesForICUByRequestedTime = (severeInfection * 0.05);
+  severeImpact.casesForVentilatorsByRequestedTime = (severeInfection * 0.02);
   severeImpact.dollarsInFlight = (severeInfection * population * income * days).toFixed(2);
-
 
   return {
     data,
