@@ -17,23 +17,23 @@ const covid19ImpactEstimator = (data) => {
 
   const days = data.timeToElapse;
   const factor = 2 ** Math.trunc(days / 3);
+  const severeCases = severeImpact.severeCasesByRequestedTime;
 
   impact.currentlyInfected = reportedCases * 10;
   impact.infectionsByRequestedTime = impact.currentlyInfected * factor;
   impact.severeCasesByRequestedTime = impact.infectionsByRequestedTime * 0.15;
-  impact.hospitalBedsByRequestedTime = beds - impact.severeCasesByRequestedTime;
+  impact.hospitalBedsByRequestedTime = Math.ceil(beds - impact.severeCasesByRequestedTime);
   impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
   impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
-  impact.dollarsInFlight = impact.infectionsByRequestedTime * population * income;
-
+  impact.dollarsInFlight = impact.infectionsByRequestedTime * population * income * days;
 
   severeImpact.currentlyInfected = reportedCases * 50;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * factor;
   severeImpact.severeCasesByRequestedTime = severeImpact.infectionsByRequestedTime * 0.15;
-  severeImpact.hospitalBedsByRequestedTime = beds - severeImpact.severeCasesByRequestedTime;
+  severeImpact.hospitalBedsByRequestedTime = Math.ceil(beds - severeCases);
   severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
   severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
-  severeImpact.dollarsInFlight = severeImpact.infectionsByRequestedTime * population * income;
+  severeImpact.dollarsInFlight = severeImpact.infectionsByRequestedTime * population * income * days;
 
   return {
     data,
