@@ -1,5 +1,11 @@
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases, periodType } = data;
+  const {
+    reportedCases, periodType, totalHospitalBeds, region
+  } = data;
+  const { avgDailyIncomePopulation, avgDailyIncomeInUSD } = region;
+  const population = avgDailyIncomePopulation;
+  const income = avgDailyIncomeInUSD;
+  const beds = totalHospitalBeds * 0.35;
   const impact = {};
   const severeImpact = {};
 
@@ -14,8 +20,21 @@ const covid19ImpactEstimator = (data) => {
 
   impact.currentlyInfected = reportedCases * 10;
   impact.infectionsByRequestedTime = impact.currentlyInfected * factor;
+  impact.severeCasesByRequestedTime = impact.infectionsByRequestedTime * 0.15;
+  impact.hospitalBedsByRequestedTime = beds - impact.severeCasesByRequestedTime;
+  impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
+  impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
+  impact.dollarsInFlight = impact.infectionsByRequestedTime * population * income;
+
+
   severeImpact.currentlyInfected = reportedCases * 50;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * factor;
+  severeImpact.severeCasesByRequestedTime = severeImpact.infectionsByRequestedTime * 0.15;
+  severeImpact.hospitalBedsByRequestedTime = beds - severeImpact.severeCasesByRequestedTime;
+  severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
+  severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
+  severeImpact.dollarsInFlight = severeImpact.infectionsByRequestedTime * population * income;
+
   return {
     data,
     impact,
