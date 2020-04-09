@@ -17,23 +17,25 @@ const covid19ImpactEstimator = (data) => {
 
   const days = data.timeToElapse;
   const factor = 2 ** Math.trunc(days / 3);
+  const infections = impact.infectionsByRequestedTime;
   const severeCases = severeImpact.severeCasesByRequestedTime;
+  const severeInfection = severeImpact.infectionsByRequestedTime;
 
   impact.currentlyInfected = reportedCases * 10;
-  impact.infectionsByRequestedTime = impact.currentlyInfected * factor;
-  impact.severeCasesByRequestedTime = impact.infectionsByRequestedTime * 0.15;
-  impact.hospitalBedsByRequestedTime = Math.ceil(beds - impact.severeCasesByRequestedTime);
-  impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
-  impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
-  impact.dollarsInFlight = impact.infectionsByRequestedTime * population * income * days;
+  impact.infectionsByRequestedTime = Math.trunc(impact.currentlyInfected * factor);
+  impact.severeCasesByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.15);
+  impact.hospitalBedsByRequestedTime = Math.round(beds - impact.severeCasesByRequestedTime);
+  impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
+  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.02);
+  impact.dollarsInFlight = (infections * population * income * days).toFixed(2);
 
   severeImpact.currentlyInfected = reportedCases * 50;
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * factor;
-  severeImpact.severeCasesByRequestedTime = severeImpact.infectionsByRequestedTime * 0.15;
-  severeImpact.hospitalBedsByRequestedTime = Math.ceil(beds - severeCases);
-  severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
-  severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
-  severeImpact.dollarsInFlight = severeCases * population * income * days;
+  severeImpact.infectionsByRequestedTime = Math.trunc(severeImpact.currentlyInfected * factor);
+  severeImpact.severeCasesByRequestedTime = Math.trunc(severeInfection * 0.15);
+  severeImpact.hospitalBedsByRequestedTime = Math.trunc(beds - severeCases);
+  severeImpact.casesForICUByRequestedTime = Math.trunc(severeInfection * 0.05);
+  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeInfection * 0.02);
+  severeImpact.dollarsInFlight = (severeCases * population * income * days).toFixed(2);
 
   return {
     data,
