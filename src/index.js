@@ -1,5 +1,5 @@
-import covid19ImpactEstimator from './estimator';
-import UI from './ui';
+import covid19ImpactEstimator from './estimator.js';
+import UI from './ui.js';
 
 const data = {
   region: {

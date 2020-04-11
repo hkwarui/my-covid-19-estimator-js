@@ -5,14 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COVID-19 Impact Estimator</title>
-  <link rel="icon" href="images/covid19.ico" type="image/x-icon" />
+  <!-- <link rel="icon" href="images/covid19.ico" type="image/x-icon" /> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
 
-<body>
+<body class="bd-white">
   <nav class="navbar sticky-top navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h4">COVID-19 IMPACT ESTIMATOR</span>
   </nav>
@@ -28,7 +27,7 @@
           <div class="row">
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
-                <label for="population">Population</label>
+                <label for="data-population">Population</label>
                 <input type="text" class="form-control data-input" id="data-population"
                   onkeypress="return isNumberKey(event)" placeholder="Population" />
               </div>
@@ -236,10 +235,9 @@
     </div>
     <footer class="navbar shadow-sm border-top fixed-bottom navbar-light bg-light">
       <span class="float-left">
-        @hkwarui
-        <a href="https://www.github.com/hkwarui/" class="fa fa-github bg dark"></a>
-        <a href="https://www.facebook.com/hkwarui" class="fa fa-facebook"></a>
-        <a href="https://www.twitter.com/hkwarui" class="fa fa-twitter"></a>
+        <a href="https://www.github.com/hkwarui/" class="fa fa-github bg dark">Github</a>
+        <a href="https://www.facebook.com/hkwarui" class="fa fa-facebook">facebook</a>
+        <a href="https://www.twitter.com/hkwarui" class="fa fa-twitter">Twitter</a>
       </span>
       <span class="float-right">&copy 2020</span>
     </footer>
@@ -253,14 +251,9 @@
       return true;
     }
   </script>
-  <script type="module" src="./index.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  <script type="module" async src="./src/index.js"></script>
+  <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script async src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 </body>
