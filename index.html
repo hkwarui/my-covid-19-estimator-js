@@ -6,21 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COVID-19 Impact Estimator</title>
   <!-- <link rel="icon" href="images/covid19.ico" type="image/x-icon" /> -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body class="bd-white">
-  <nav class="navbar sticky-top navbar-dark bg-dark">
+  <nav class="navbar sticky-top navbar-top">
     <span class="navbar-brand mb-0 h4">COVID-19 IMPACT ESTIMATOR</span>
   </nav>
   <div class="container">
     <!-- Input Form -->
     <div class="row">
-      <div class="col-md-6 mx-auto bg-white mt-5 p-5 shadow-sm border rounded" id="formDisplay">
-        <div>
-          <h6 class="display">Enter your data to estimate Impact.</h6>
+      <div class="col-md-6 mx-auto bg-white mt-5 mb-3 p-3 shadow-lg border rounded" id="formDisplay">
+        <div class="card-header h-header text-center">
+          <h4>Enter your data to estimate</h4>
         </div>
         <hr />
         <form id="goEstimate">
@@ -29,14 +31,14 @@
               <div class="form-group mx-sm-3 mb-2">
                 <label for="data-population">Population</label>
                 <input type="text" class="form-control data-input" id="data-population"
-                  onkeypress="return isNumberKey(event)" placeholder="Population" />
+                  onkeypress="return isNumberKey(event)" />
               </div>
             </div>
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="data-reported-cases">Reported Cases</label>
-                <input type="text" class="form-control" id="data-reported-cases" onkeypress="return isNumberKey(event)"
-                  placeholder="Reported Cases" />
+                <input type="text" class="form-control" id="data-reported-cases"
+                  onkeypress="return isNumberKey(event)" />
               </div>
             </div>
           </div>
@@ -44,8 +46,8 @@
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="data-time-to-elapse">Time To Elapse</label>
-                <input type="text" class="form-control" id="data-time-to-elapse" onkeypress="return isNumberKey(event)"
-                  placeholder="Duration" />
+                <input type="text" class="form-control" id="data-time-to-elapse"
+                  onkeypress="return isNumberKey(event)" />
               </div>
             </div>
             <div class="col">
@@ -63,7 +65,7 @@
             <div class="col">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="data-total-hospital-beds">Total Hospital Beds</label>
-                <input type="text" class="form-control" id="data-total-hospital-beds" placeholder="Hospital Beds" />
+                <input type="text" class="form-control" id="data-total-hospital-beds" />
               </div>
             </div>
             <div class="col"></div>
@@ -72,7 +74,7 @@
           <div class="row">
             <div class="col"></div>
             <div class="col">
-              <button type="submit" id="data-go-estimate" class="btn btn-info mb-2 float-right">
+              <button type="submit" id="data-go-estimate" class="btn btn-info mb-2 float-right text-white">
                 Estimate
               </button>
             </div>
@@ -83,10 +85,10 @@
 
     <!-- Data display -->
     <div id="dataDisplay" class="card mt-3">
-      <div class="card-header">
+      <div class="card-header h-header">
         <h5 class="m-0 text-center">Inputed Data</h5>
       </div>
-      <div class="card-body shadow-sm">
+      <div class="card-body shadow">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
             Population :
@@ -121,9 +123,9 @@
     <div class="row mb-5">
       <!-- Impact estimate Display-->
       <div class="col" id="impactDisplay">
-        <div class="mx-auto text-center shadow-sm border bg-white mt-5 mb-5 p-5 rounded">
+        <div class="mx-auto text-center shadow border bg-white mt-5 mb-5 p-5 rounded">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header h-header">
               <h5>Impact Estimates</h5>
             </div>
           </div>
@@ -178,9 +180,9 @@
       <!-- Severe Impact Estimate -->
 
       <div class="col" id="severeDisplay">
-        <div class="mx-auto text-center shadow-sm border bg-white mt-5 mb-5 p-5 rounded">
+        <div class="mx-auto text-center shadow border bg-white mt-5 mb-5 p-5 rounded">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header h-header">
               <h5>Severe Impact Estimates</h5>
             </div>
           </div>
@@ -233,7 +235,7 @@
         </div>
       </div>
     </div>
-    <footer class="navbar shadow-sm border-top fixed-bottom navbar-light bg-light">
+    <footer class="navbar shadow border-top fixed-bottom ">
       <span class="float-left">
         <a href="https://www.github.com/hkwarui/" class="fa fa-github bg dark">Github</a>
         <a href="https://www.facebook.com/hkwarui" class="fa fa-facebook">facebook</a>
