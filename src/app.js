@@ -33,19 +33,19 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve('index.html'));
-});
-app.get('/src/index.js', (req, res) => {
-  res.sendFile(path.resolve(`${__dirname}/index.js`));
-});
-app.get('/src/estimator.js', (req, res) => {
-  res.sendFile(path.resolve(`${__dirname}/estimator.js`));
-});
-app.get('/src/ui.js', (req, res) => {
-  res.sendFile(path.resolve(`${__dirname}/ui.js`));
-});
-app.use(express.static(path.join(__dirname, 'public')));
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve('index.html'));
+// });
+// app.get('/src/index.js', (req, res) => {
+//   res.sendFile(path.resolve(`${__dirname}/index.js`));
+// });
+// app.get('/src/estimator.js', (req, res) => {
+//   res.sendFile(path.resolve(`${__dirname}/estimator.js`));
+// });
+// app.get('/src/ui.js', (req, res) => {
+//   res.sendFile(path.resolve(`${__dirname}/ui.js`));
+// });
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Get default response
 app.get('/api/v1/on-covid-19', (req, res) => {
