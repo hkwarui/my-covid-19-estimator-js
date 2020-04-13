@@ -1,6 +1,6 @@
 
-import covid19ImpactEstimator from './estimator';
-import UI from './ui';
+import covid19ImpactEstimator from './estimator.js';
+import UI from './ui.js';
 
 const data = {
   region: {
@@ -27,3 +27,6 @@ document.getElementById('goEstimate').addEventListener('submit', (e) => {
   estimate.severeImpact = covid19ImpactEstimator(data).severeImpact;
   UI(estimate);
 });
+
+const estimateData = () => estimate;
+module.exports = estimateData;
