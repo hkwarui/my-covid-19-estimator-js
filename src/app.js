@@ -15,7 +15,7 @@ const covid19ImpactEstimator = require('./estimator.js');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'));
-app.use(morgan(':method   :url    status  :response-time[sss]ms', { stream: accessLogStream }));
+app.use(morgan(':method     :url      :status     :response-time[sss]ms', { stream: accessLogStream }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
