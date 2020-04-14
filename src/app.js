@@ -15,7 +15,7 @@ const covid19ImpactEstimator = require('./estimator.js');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'));
-app.use(morgan(':method  :url  :status   :response-time ms', { stream: accessLogStream }));
+app.use(morgan(':method     :url      :status     :response-time ms', { stream: accessLogStream }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -74,6 +74,7 @@ app.post('/api/v1/on-covid-19/:format', (req, res) => {
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
   const filename = path.resolve(`${__dirname}/access.log`);
   const readStream = fs.createReadStream(filename);
+  res.header('Content-Type', 'text/plain');
   readStream.on('open', () => readStream.pipe(res));
   return readStream.on('error', (err) => res.end(err));
 });
