@@ -48,26 +48,57 @@ app.use((req, res, next) => {
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // Get default response
-app.get('/api/v1/on-covid-19', (req, res) => {
+// app.get('/api/v1/on-covid-19', (req, res) => {
+//   const data = req.body;
+//   const estimate = covid19ImpactEstimator(data);
+//   res.json({ estimate });
+// });
+
+// post default response
+app.post('/api/v1/on-covid-19', (req, res) => {
   const data = req.body;
   const estimate = covid19ImpactEstimator(data);
   res.json({ estimate });
 });
 
 // Get response in json
-app.get('/api/v1/on-covid-19/json', (req, res) => {
-  const data = req.body;
-  const estimate = covid19ImpactEstimator(data);
-  res.json({ estimate });
-});
+// app.get('/api/v1/on-covid-19/json', (req, res) => {
+//   const data = req.body;
+//   const estimate = covid19ImpactEstimator(data);
+//   res.json({ estimate });
+// });
+
+// // Post response in json
+// app.get('/api/v1/on-covid-19/json', (req, res) => {
+//   const data = req.body;
+//   const estimate = covid19ImpactEstimator(data);
+//   res.json({ estimate });
+// });
 
 // Get response  in xml
-app.get('/api/v1/on-covid-19/xml', (req, res) => {
-  res.header('Content-Type', 'application/xml');
-  const data = req.body;
-  const estimate = covid19ImpactEstimator(data);
-  res.send((js2xmlparser.parse('estimate', estimate)));
+app.post('/api/v1/on-covid-19/:format', (req, res) => {
+  const { format } = req.params;
+  if (format === 'xml') {
+    res.header('Content-Type', 'application/xml');
+    const data = req.body;
+    const estimate = covid19ImpactEstimator(data);
+    res.send((js2xmlparser.parse('estimate', estimate)));
+  } else if (format === 'json') {
+    const data = req.body;
+    const estimate = covid19ImpactEstimator(data);
+    res.json({ estimate });
+  } else {
+    res.status(400).json({ message: 'Bad request' });
+  }
 });
+
+// // Post response in xml
+// app.post('/api/v1/on-covid-19/xml', (req, res) => {
+//   res.header('Content-Type', 'application/xml');
+//   const data = req.body;
+//   const estimate = covid19ImpactEstimator(data);
+//   res.send((js2xmlparser.parse('estimate', estimate)));
+// });
 
 // Get logs
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
@@ -80,13 +111,6 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   readStream.on('error', (err) => {
     res.end(err);
   });
-});
-
-
-app.use((req, res, next) => {
-  const error = new Error('Not found');
-  error.status = 404;
-  next(error);
 });
 
 app.use((error, req, res) => {
