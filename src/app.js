@@ -41,8 +41,7 @@ app.post('/api/v1/on-covid-19', (req, res) => {
       message: 'No data inputed !'
     });
   }
-  const estimate = covid19ImpactEstimator(data);
-  return res.json({ estimate });
+  return res.json(covid19ImpactEstimator(data));
 });
 
 // Post response  in xml or json
