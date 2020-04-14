@@ -75,6 +75,7 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   const filename = path.resolve(`${__dirname}/access.log`);
   const readStream = fs.createReadStream(filename);
   readStream.on('open', () => readStream.pipe(res));
+res.header('Content-Type', 'text/plain')
   return readStream.on('error', (err) => res.end(err));
 });
 module.exports = app;
