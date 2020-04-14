@@ -86,6 +86,7 @@ app.post('/api/v1/on-covid-19', (req, res) => {
 // });
 
 // Get response  in xml or json
+// eslint-disable-next-line consistent-return
 app.get('/api/v1/on-covid-19/:format', (req, res) => {
   const { format } = req.params;
   if (format === 'xml') {
@@ -110,10 +111,8 @@ app.get('/api/v1/on-covid-19/:format', (req, res) => {
   } if (format === 'logs') {
     const filename = path.resolve(`${__dirname}/access.log`);
     const readStream = fs.createReadStream(filename);
-    readStream.on('open', () => {
-      readStream.pipe(res);
-    });
-    readStream.on('error', (err) => res.end(err));
+    readStream.on('open', () => readStream.pipe(res));
+    return readStream.on('error', (err) => res.end(err));
   }
 });
 
