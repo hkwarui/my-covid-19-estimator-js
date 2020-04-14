@@ -19,8 +19,8 @@ app.use(morgan(':method   :url    :status   :response-time ms', { stream: access
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Set headers
-app.use((req, res, next) => {
+// post default response
+app.post('/api/v1/on-covid-19', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Acess-Control-Allow-Headers',
@@ -30,11 +30,6 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH,DELETE,GET');
     return res.status(200).json({});
   }
-  return next();
-});
-
-// post default response
-app.post('/api/v1/on-covid-19', (req, res) => {
   const data = req.body;
   if (!data) {
     return res.status(404).json({
@@ -46,6 +41,13 @@ app.post('/api/v1/on-covid-19', (req, res) => {
 
 // Post response  in xml or json
 app.post('/api/v1/on-covid-19/:format', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Acess-Control-Allow-Headers',
+    'Origin,X-Requested-With,Content-Type, Authorization'
+  );
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH,DELETE,GET');
+
   const { format } = req.params;
   if (format === 'xml') {
     res.header('Content-Type', 'application/xml');
@@ -58,6 +60,7 @@ app.post('/api/v1/on-covid-19/:format', (req, res) => {
     const estimate = covid19ImpactEstimator(data);
     return res.send((js2xmlparser.parse('estimate', estimate)));
   } if (format === 'json') {
+    res.header('Content-Type', 'application/json');
     const data = req.body;
     if (!data) {
       return res.status(404).json({
