@@ -1,4 +1,3 @@
-
 import covid19ImpactEstimator from './estimator';
 import UI from './ui';
 
