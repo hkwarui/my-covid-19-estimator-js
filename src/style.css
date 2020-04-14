@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
+  font-display: swap;
+}
+body{
+  background-color:#ffffff;
+  font-family: 'Tangerine', serif; 
+  font-size: 17px
+}
+.navbar-top{
+  background-color: #ffffff;
+  border-bottom: 1px solid gainsboro;
+  box-shadow: 0 0 5px 1px lightgrey;
+}
+h1,h2,h3,h4,h5{
+color:b;
+}
+.h-header{
+  background-color: #138496;
+  color: #ffffff;
+}
+footer{
+  background-color: #ffffff;
+  color:#138496
+}
+label{
+  columns: #000000;
+  font-weight: 400;
+}
+input{
+  background-color: #f1f3f4;
+}
