@@ -1,5 +1,7 @@
 # #BuildForSDG Cohort-1 JavaScript Assessment
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7797cfd5f7aa4769b4ac2144f8e644cc)](https://app.codacy.com/manual/hkwarui/my-covid-19-estimator-js?utm_source=github.com&utm_medium=referral&utm_content=hkwarui/my-covid-19-estimator-js&utm_campaign=Badge_Grade_Settings)
+
 > Build an overly simplified COVID-19 infection impact estimator
 
 This is an eligibility assessment for the 2020 [#BuildforSDG](https://buildforsdg.andela.com/) program
